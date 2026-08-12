@@ -4,45 +4,127 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GO INTO DEEP | أرشيف اللقاءات</title>
+<meta name="description" content="أرشيف لقاءات GO INTO DEEP الصوتية.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <header class="header">
   <a class="brand" href="#home">
-    <img src="assets/logo.jpeg" alt="GO INTO DEEP">
-    <span><b>GO INTO DEEP</b><small>AUDIO ARCHIVE</small></span>
+    <span class="logo-wrap"><img src="assets/logo.jpeg" alt="GO INTO DEEP"></span>
+    <span class="brand-text"><b>GO INTO DEEP</b><small>GO DEEPER • GROW DEEPER</small></span>
   </a>
   <nav>
-    <a href="#home">الرئيسية</a><a href="#meetings">اللقاءات</a><a href="#about">عن المجموعة</a>
+    <a class="active" href="#home">الرئيسية</a>
+    <a href="#meetings">اللقاءات</a>
+    <a href="#about">عن المجموعة</a>
   </nav>
+  <a class="header-cta" href="#meetings">ابدأ الاستماع <span>↗</span></a>
 </header>
 
 <main>
 <section class="hero" id="home">
-  <div>
-    <span class="tag">GO INTO DEEP</span>
-    <h1>نغوص أعمق<br><em>في الكلمة.</em></h1>
-    <p>أرشيف لقاءات المجموعة الصوتية — مكان واحد نرجع له، نسمع منه، ونضيف إليه كل لقاء جديد.</p>
-    <a class="btn" href="#meetings">اكتشف اللقاءات ↓</a>
+  <div class="hero-noise"></div>
+  <div class="hero-copy">
+    <div class="mini-label"><span></span> AUDIO ARCHIVE</div>
+    <h1>ادخل أعمق.<br><em>اسمع، تأمل،</em><br>واكتشف.</h1>
+    <p>أرشيف GO INTO DEEP — كل لقاء، كل فكرة، وكل صوت يستحق أن يفضل معانا.</p>
+    <div class="hero-actions">
+      <a class="primary-btn" href="#meetings">استكشف اللقاءات <span>↓</span></a>
+      <a class="ghost-btn" href="#about">عن GO INTO DEEP</a>
+    </div>
+    <div class="hero-stats">
+      <div><strong>01</strong><span>لقاء متاح</span></div>
+      <i></i>
+      <div><strong>2025</strong><span>بداية الأرشيف</span></div>
+      <i></i>
+      <div><strong>∞</strong><span>مساحة للتعمق</span></div>
+    </div>
   </div>
-  <div class="art">
-    <div class="ring r1"></div><div class="ring r2"></div>
-    <div class="audio-card"><strong>01</strong><div class="wave">▁▃▆▄▇▅█▃▆▄▂</div><small>LISTEN • GO INTO DEEP</small></div>
+
+  <div class="hero-visual">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="orbit orbit-1"></div>
+    <div class="orbit orbit-2"></div>
+
+    <div class="featured-card">
+      <div class="featured-top">
+        <span class="featured-number">01</span>
+        <span class="pill">LATEST</span>
+      </div>
+      <div class="record-icon">♫</div>
+      <div class="featured-bottom">
+        <small>GO INTO DEEP</small>
+        <strong>Listen<br>Deeper.</strong>
+      </div>
+    </div>
+
+    <div class="floating-card card-a"><span>13</span><small>OCT<br>2025</small></div>
+    <div class="floating-card card-b">DEEP<br><b>LISTEN</b></div>
   </div>
 </section>
 
-<section class="section" id="meetings">
-  <div class="title"><div><span class="tag">THE ARCHIVE</span><h2>أحدث اللقاءات</h2></div><span id="meeting-count"></span></div>
-  <div id="meetings-list" class="grid"></div>
+<section class="intro-strip">
+  <span>LISTEN</span><b>•</b><span>REFLECT</span><b>•</b><span>DISCOVER</span><b>•</b><span>GO DEEP</span>
+</section>
+
+<section class="section meetings" id="meetings">
+  <div class="section-heading">
+    <div>
+      <div class="mini-label"><span></span> THE ARCHIVE</div>
+      <h2>اللقاءات</h2>
+      <p>كل ما نضيف لقاء جديد، هتلاقيه هنا.</p>
+    </div>
+    <div class="heading-count"><strong id="meeting-count">0</strong><span>لقاءات<br>صوتية</span></div>
+  </div>
+
+  <div id="featured-meeting"></div>
+  <div id="meetings-list" class="meeting-grid"></div>
+</section>
+
+<section class="quote-section">
+  <div class="quote-mark">“</div>
+  <p>العمق مش إننا نعرف أكتر بس،<br><em>لكن إننا نفهم ونعيش أكتر.</em></p>
+  <span>— GO INTO DEEP</span>
 </section>
 
 <section class="section about" id="about">
-  <div><span class="tag">ABOUT US</span><h2>GO INTO DEEP</h2></div>
-  <div><p>مساحة تجمع لقاءات المجموعة في أرشيف صوتي بسيط وسهل الرجوع إليه.</p><p class="soft">كلما زاد عدد اللقاءات، نضيفها هنا لتظل محفوظة ومنظمة.</p></div>
+  <div class="about-card">
+    <div class="about-art"><div class="big-circle"></div><span>GO<br>DEEP</span></div>
+    <div class="about-copy">
+      <div class="mini-label"><span></span> ABOUT THE GROUP</div>
+      <h2>مساحة<br><em>للتعمق.</em></h2>
+      <p>GO INTO DEEP مساحة بنجمع فيها لقاءات المجموعة في أرشيف واحد، علشان كل لقاء يفضل سهل الوصول ليه مهما كبر الأرشيف.</p>
+      <div class="about-points">
+        <span>01 <b>لقاءات صوتية</b></span>
+        <span>02 <b>أرشيف مرتب</b></span>
+        <span>03 <b>إضافة مستمرة</b></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="future-section">
+  <div>
+    <div class="mini-label light"><span></span> COMING NEXT</div>
+    <h2>لسه البداية.</h2>
+    <p>الموقع معمول علشان يكبر مع كل لقاء جديد.</p>
+  </div>
+  <div class="future-grid">
+    <div><span>🎧</span><b>تسجيلات أكثر</b><small>نضيف كل لقاء جديد</small></div>
+    <div><span>✦</span><b>مؤتمرات</b><small>قسم خاص بالمؤتمرات لاحقًا</small></div>
+    <div><span>＋</span><b>أرشيف أكبر</b><small>مكان واحد لكل المحتوى</small></div>
+  </div>
 </section>
 </main>
 
-<footer><span>GO INTO DEEP</span><small>© <span id="year"></span></small></footer>
-<script src="content.js"></script><script src="script.js"></script>
+<footer>
+  <div><b>GO INTO DEEP</b><span>GO DEEPER • GROW DEEPER</span></div>
+  <small>© <span id="year"></span> GO INTO DEEP</small>
+</footer>
+
+<script src="content.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
