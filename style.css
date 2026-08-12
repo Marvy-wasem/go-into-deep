@@ -1,1 +1,162 @@
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,"Segoe UI",sans-serif;background:#f7f7f5;color:#202020;line-height:1.7}.site-header{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid #e8e8e8;display:flex;justify-content:space-between;align-items:center;padding:14px 6%;gap:20px}.brand{display:flex;align-items:center;gap:12px}.brand img{width:48px;height:48px;object-fit:contain;border-radius:8px}.brand div{display:flex;flex-direction:column}.brand span{font-size:12px;color:#777}nav{display:flex;gap:20px}nav a{text-decoration:none;color:#222;font-weight:600}.hero{padding:90px 6% 75px;max-width:1000px}.eyebrow{font-size:12px;letter-spacing:2px;color:#777;margin:0 0 8px}.hero h1,.section h2{margin:0 0 12px;line-height:1.25}.hero h1{font-size:clamp(36px,6vw,64px)}.hero p:not(.eyebrow){max-width:650px;color:#666;font-size:18px}.button{display:inline-block;margin-top:20px;padding:12px 22px;background:#202020;color:#fff;text-decoration:none;border-radius:10px}.section{padding:65px 6%;max-width:1100px;margin:auto}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:24px}.count{color:#777;font-size:14px}.meetings-list{display:grid;gap:16px}.meeting{background:#fff;border:1px solid #e5e5e5;border-radius:16px;padding:22px;display:flex;justify-content:space-between;gap:20px;align-items:center;box-shadow:0 3px 14px rgba(0,0,0,.04)}.meeting-info h3{margin:0 0 6px;font-size:22px}.meta{color:#777;font-size:14px}.listen{display:inline-block;padding:10px 18px;border-radius:9px;background:#202020;color:#fff;text-decoration:none;white-space:nowrap}.empty{padding:30px;background:#fff;border:1px dashed #ccc;border-radius:14px;color:#777}.about{padding-top:20px;padding-bottom:100px}.about p{color:#666}footer{text-align:center;padding:30px;border-top:1px solid #e8e8e8;color:#777}@media(max-width:700px){.site-header{align-items:flex-start;flex-direction:column}nav{gap:14px;flex-wrap:wrap}.hero{padding-top:60px}.meeting{align-items:flex-start;flex-direction:column}.listen{width:100%;text-align:center}}
+meeting::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 6px;
+  height: 100%;
+  background: var(--gold);
+}
+
+.meeting:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 55px rgba(23,37,43,.14);
+}
+
+.meeting-info {
+  position: relative;
+}
+
+.meeting-info h3 {
+  margin: 5px 0 10px;
+  color: var(--dark);
+  font-size: 23px;
+  line-height: 1.5;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.listen {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin-top: 25px;
+  padding: 10px 22px;
+  background: var(--green);
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: 0.25s;
+}
+
+.listen:hover {
+  background: var(--green-dark);
+  transform: translateY(-2px);
+}
+
+.empty {
+  padding: 35px;
+  background: white;
+  border: 1px dashed #ccc;
+  border-radius: 18px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ================= ABOUT ================= */
+
+.about {
+  margin-top: 30px;
+  margin-bottom: 70px;
+  padding: 70px;
+  background: var(--green);
+  border-radius: 30px;
+  color: white;
+  box-shadow: var(--shadow);
+}
+
+.about .eyebrow {
+  color: #d7c49d;
+}
+
+.about h2 {
+  color: white;
+}
+
+.about p {
+  max-width: 650px;
+  margin-top: 20px;
+  color: rgba(255,255,255,.78);
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+  padding: 35px 7%;
+  background: var(--dark);
+  color: rgba(255,255,255,.6);
+  text-align: center;
+  font-size: 13px;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 750px) {
+
+  .site-header {
+    padding: 12px 5%;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  nav a {
+    font-size: 12px;
+  }
+
+  .hero {
+    min-height: 70vh;
+    padding: 70px 7%;
+  }
+
+  .hero h1 {
+    font-size: 48px;
+  }
+
+  .hero p:not(.eyebrow) {
+    font-size: 16px;
+  }
+
+  .section {
+    padding: 65px 6%;
+  }
+
+  .section-head {
+    align-items: start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .meetings-list {
+    grid-template-columns: 1fr;
+  }
+
+  .meeting {
+    min-height: 220px;
+    padding: 25px;
+  }
+
+  .meeting-info h3 {
+    font-size: 20px;
+  }
+
+  .listen {
+    width: 100%;
+  }
+
+  .about {
+    margin: 20px 5% 50px;
+    padding: 40px 25px;
+  }
+}
