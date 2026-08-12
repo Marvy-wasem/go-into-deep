@@ -1,24 +1,14 @@
-document.addEventListener("DOMContentLoaded",function(){
- const list=document.getElementById("meetings-list");
- const count=document.getElementById("meeting-count");
- const featured=document.getElementById("featured-meeting");
- const year=document.getElementById("year");
- if(year) year.textContent=new Date().getFullYear();
- if(!Array.isArray(meetings)||!meetings.length){
-   list.innerHTML='<div class="empty">لسه هنضيف اللقاءات هنا 🎧</div>'; return;
- }
- count.textContent=meetings.length;
- const first=meetings[0];
- featured.innerHTML=`<div class="featured-meeting">
-   <div class="fm-number">${safe(first.number||"01")}</div>
-   <div class="fm-copy"><small>LATEST MEETING • ${safe(first.date)}</small><h3>${safe(first.title)}</h3><p>${safe(first.speaker)}</p></div>
-   <a class="fm-btn" href="${safe(first.link)}" target="_blank" rel="noopener">🎧 استمع الآن</a>
- </div>`;
- list.innerHTML=meetings.slice(1).map((m,i)=>`<article class="meeting">
-   <div><div class="meeting-number">MEETING ${safe(m.number||String(i+2).padStart(2,"0"))}</div>
-   <h3>${safe(m.title)}</h3><div class="meta">${safe(m.speaker)} • ${safe(m.date)}</div></div>
-   <a class="listen" href="${safe(m.link)}" target="_blank" rel="noopener">🎧 الاستماع للتسجيل</a>
- </article>`).join("");
- if(!meetings.slice(1).length) list.innerHTML='<div class="empty">أول لقاء موجود فوق — واللقاءات الجديدة هتظهر هنا تلقائيًا ✦</div>';
+document.addEventListener("DOMContentLoaded",()=>{
+const d=siteData||{}, meetings=d.meetings||[], conferences=d.conferences||[], books=d.books||[];
+document.getElementById("year").textContent=new Date().getFullYear();
+const m=document.getElementById("meetings-list");
+m.innerHTML=meetings.length?meetings.map((x,i)=>`<article class="card"><div><div class="top"><span class="num">MEETING ${e(x.number||String(i+1).padStart(2,"0"))}</span><span class="date">${e(x.date||"")}</span></div><h3>${e(x.title||"")}</h3><div class="meta">${e(x.speaker||"")}</div></div><a class="listen" href="${a(x.link)}" target="_blank" rel="noopener">🎧 الاستماع للتسجيل</a></article>`).join(""):'<div class="empty">لسه مفيش لقاءات مضافة 🎧</div>';
+const c=document.getElementById("conferences-grid");
+c.innerHTML=conferences.length?conferences.map(x=>`<article class="conference"><div class="photo">${x.image?`<img src="${a(x.image)}" alt="">`:"📸 صورة المؤتمر"}</div><div class="info"><h3>${e(x.title||"")}</h3><small>${e(x.date||"")}</small></div></article>`).join(""):'<div class="empty">📸 هنا هنضيف صور المؤتمرات الجماعية لاحقًا.</div>';
+const b=document.getElementById("books-grid");
+b.innerHTML=books.length?books.map(x=>`<article class="card"><div><div class="bookicon">PDF</div><h3>${e(x.title||"")}</h3><p>${e(x.description||"")}</p></div><a class="bookbtn" href="${a(x.link)}" target="_blank" rel="noopener">📖 فتح الكتاب</a></article>`).join(""):'<div class="empty">📚 هنا هنضيف الكتب المهمة وروابط الـPDF.</div>';
+if(d.social?.instagram&&d.social.instagram!=="#")document.getElementById("instagram").href=d.social.instagram;
+if(d.social?.youtube&&d.social.youtube!=="#")document.getElementById("youtube").href=d.social.youtube;
 });
-function safe(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+function e(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+function a(v){return e(v).replace(/`/g,"&#96;")}
