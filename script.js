@@ -1,27 +1,8 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const list = document.getElementById("meetings-list");
-  const count = document.getElementById("meeting-count");
-
-  if (!Array.isArray(meetings)) {
-    list.innerHTML = '<div class="empty">تعذر تحميل اللقاءات.</div>';
-    return;
-  }
-
-  count.textContent = `${meetings.length} لقاء`;
-  list.innerHTML = meetings.map((m, i) => `
-    <article class="meeting">
-      <div class="meeting-info">
-        <p class="eyebrow">لقاء ${m.number || String(i + 1).padStart(2, "0")}</p>
-        <h3>${escapeHtml(m.title)}</h3>
-        <div class="meta">${escapeHtml(m.speaker)} • ${escapeHtml(m.date)}</div>
-      </div>
-      <a class="listen" href="${m.link}" target="_blank" rel="noopener">🎧 الاستماع للتسجيل</a>
-    </article>
-  `).join("");
+document.addEventListener("DOMContentLoaded",function(){
+const list=document.getElementById("meetings-list"),count=document.getElementById("meeting-count");
+document.getElementById("year").textContent=new Date().getFullYear();
+if(!Array.isArray(meetings)||!meetings.length){list.innerHTML='<div class="empty">لسه هنضيف اللقاءات هنا 🎧</div>';return}
+count.textContent=meetings.length+(meetings.length===1?" لقاء":" لقاءات");
+list.innerHTML=meetings.map((m,i)=>`<article class="meeting"><div><div class="num">MEETING ${m.number||String(i+1).padStart(2,"0")}</div><h3>${safe(m.title)}</h3><div class="meta">${safe(m.speaker)} • ${safe(m.date)}</div></div><a class="listen" href="${safe(m.link)}" target="_blank" rel="noopener">🎧 الاستماع للتسجيل</a></article>`).join("");
 });
-
-function escapeHtml(value) {
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;"
-  }[char]));
-}
+function safe(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
