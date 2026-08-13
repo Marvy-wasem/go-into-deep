@@ -175,3 +175,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // =========================
+// حماية النصوص
+// =========================
+function escapeHTML(value) {
+  return String(value ?? "").replace(
+    /[&<>"']/g,
+    char => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#039;"
+    }[char])
+  );
+}
+
+function escapeAttr(value) {
+  return escapeHTML(value).replace(
+    /`/g,
+    "&#96;"
+  );
+}
