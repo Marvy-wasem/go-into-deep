@@ -1,91 +1,66 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>قراءة الكتاب | GO INTO DEEP</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background: #1b302d;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
-
-    .top {
-      height: 70px;
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #f6f1e8;
-      color: #1b302d;
-    }
-
-    .top h1 {
-      font-size: 16px;
-      margin: 0;
-    }
-
-    .back {
-      text-decoration: none;
-      color: #1b302d;
-      font-size: 13px;
-      font-weight: bold;
-    }
-
-    .reader {
-      width: 100%;
-      height: calc(100vh - 70px);
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      background: white;
-    }
-
-    .fallback {
-      text-align: center;
-      padding: 30px;
-      display: none;
-    }
-
-    .fallback a {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 20px;
-      background: #cf765e;
-      color: white;
-      text-decoration: none;
-      border-radius: 10px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>قراءة الكتاب | GO INTO DEEP</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#1b302d;color:#fff;font-family:Arial,sans-serif}
+.top{height:70px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;background:#f6f1e8;color:#1b302d;position:sticky;top:0;z-index:10}
+.title{font-size:15px;font-weight:700}.back{color:#1b302d;text-decoration:none;font-size:12px;font-weight:700}
+.reader{min-height:calc(100vh - 70px);padding:18px 12px 30px;display:flex;flex-direction:column;align-items:center}
+.controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:14px}
+button,.download{border:0;border-radius:10px;padding:10px 14px;background:#cf765e;color:#fff;font-weight:700;cursor:pointer;text-decoration:none;font-size:12px}
+button:disabled{opacity:.45;cursor:not-allowed}.page-info{font-size:12px;color:#e5d8b7;min-width:110px;text-align:center}
+.sheet{width:min(900px,100%);background:#fff;box-shadow:0 15px 45px #0005;display:flex;justify-content:center;overflow:auto}
+canvas{display:block;max-width:100%;height:auto}.status{padding:25px;text-align:center;color:#e5d8b7}
+@media(max-width:600px){.top{height:62px}.title{font-size:13px}.reader{padding:12px 6px 25px}.controls{gap:6px}.controls button,.download{padding:9px 11px;font-size:11px}}
+</style>
 </head>
-
 <body>
-
-  <div class="top">
-    <h1>📖 دعوة إلى حياة المسيح</h1>
-
-    <a class="back" href="index.html#books">
-      ← الرجوع للكتب
-    </a>
+<header class="top">
+  <div class="title">📖 دعوة إلى حياة المسيح</div>
+  <a class="back" href="index.html#books">← الرجوع للموقع</a>
+</header>
+<main class="reader">
+  <div class="controls">
+    <button id="prev">← السابقة</button>
+    <span class="page-info" id="pageInfo">جاري التحميل…</span>
+    <button id="next">التالية →</button>
+    <a class="download" href="assets/books/daawa-ila-hayat-al-masih.pdf" target="_blank" rel="noopener">تحميل PDF</a>
   </div>
-
-  <div class="reader">
-    <iframe
-      src="assets/books/daawa-ila-hayat-al-masih.pdf"
-      title="دعوة إلى حياة المسيح">
-    </iframe>
-  </div>
-
+  <div class="sheet" id="sheet"><div class="status">جاري تجهيز الكتاب…</div></div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+const pdfUrl="assets/books/daawa-ila-hayat-al-masih.pdf";
+let pdf=null,pageNum=1,rendering=false,pending=null;
+const canvas=document.createElement("canvas"),ctx=canvas.getContext("2d");
+const sheet=document.getElementById("sheet"),pageInfo=document.getElementById("pageInfo");
+const prev=document.getElementById("prev"),next=document.getElementById("next");
+function renderPage(num){
+  rendering=true;
+  pdf.getPage(num).then(page=>{
+    const base=page.getViewport({scale:1});
+    const scale=Math.min((window.innerWidth-24)/base.width,900/base.width);
+    const viewport=page.getViewport({scale});
+    canvas.width=Math.floor(viewport.width);canvas.height=Math.floor(viewport.height);
+    sheet.innerHTML="";sheet.appendChild(canvas);
+    return page.render({canvasContext:ctx,viewport}).promise;
+  }).then(()=>{
+    rendering=false;pageInfo.textContent=`صفحة ${pageNum} من ${pdf.numPages}`;
+    prev.disabled=pageNum<=1;next.disabled=pageNum>=pdf.numPages;
+    if(pending!==null){const p=pending;pending=null;renderPage(p);}
+  }).catch(()=>{rendering=false;sheet.innerHTML='<div class="status">حصلت مشكلة في عرض الصفحة. جرّبي تحديث الصفحة.</div>';});
+}
+function queuePage(num){if(!pdf||num<1||num>pdf.numPages)return;if(rendering){pending=num;return;}pageNum=num;renderPage(pageNum);}
+prev.onclick=()=>queuePage(pageNum-1);next.onclick=()=>queuePage(pageNum+1);
+window.onresize=()=>{if(pdf&&!rendering)renderPage(pageNum);}
+pdfjsLib.getDocument(pdfUrl).promise.then(doc=>{pdf=doc;renderPage(1);}).catch(()=>{
+  sheet.innerHTML='<div class="status">لم نتمكن من فتح الكتاب داخل القارئ.<br>تأكدي أن ملف PDF موجود داخل assets/books.</div>';
+});
+</script>
 </body>
 </html>
