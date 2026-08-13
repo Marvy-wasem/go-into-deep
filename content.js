@@ -23,7 +23,7 @@ const siteData = {
     {
       title: "دعوة إلى حياة المسيح",
       description: "تدريبات للتشبه بشخصية يسوع المسيح — تأليف جان جونسون.",
-      link: "assets/books/5_دعوة_الى_حياة_المسيح_christianlib_com.pdf",
+      link: "reader.html",
       cover: "assets/books/book-cover.jpg"
     }
   ],
