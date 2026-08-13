@@ -7,9 +7,12 @@ const siteData = {
     // {title:"اسم المؤتمر", date:"2026", image:"assets/conference-1.jpg"}
   ],
   books: [
-    // أضيفي الكتاب هنا:
-    // {title:"اسم الكتاب", description:"وصف صغير", link:"رابط PDF"}
-  ],
+  ],{
+  title:"دعوة إلى حياة المسيح",
+  description:"تدريبات للتشبه بشخصية يسوع المسيح — تأليف جان جونسون.",
+  link:"assets/books/daawa-ila-hayat-al-masih.pdf",
+  cover:"assets/books/book-cover.jpg"
+}
   social: {
     instagram: "#",
     youtube: "#"
