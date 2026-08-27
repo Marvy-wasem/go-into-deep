@@ -1,23 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { min-height: 100vh;
-font-family: "Inter", sans-serif;
-
-background: #050507;
-color: white;
-
-overflow-x: hidden;
-}
-/* ========================= BACKGROUND ========================= */
-.background { position: fixed;
-width: 100%;
-height: 100%;
-
-inset: 0;
-
-pointer-events: none;
-
+body { min-height: 100vh; font-family: "Inter", sans-serif; background: #050507; color: white; overflow-x: hidden; }
+.background { position: fixed; inset: 0; pointer-events: none;
 background:
     radial-gradient(
         circle at 50% 20%,
@@ -31,49 +16,32 @@ background:
         transparent 30%
     );
 }
-/* ========================= MAIN ========================= */
-main { position: relative;
-width: min(1100px, 90%);
-
-margin: auto;
-
-padding: 90px 0 80px;
-}
-/* ========================= LOGO ========================= */
+main { position: relative; width: min(1100px, 90%); margin: auto; padding: 90px 0 80px; }
 .logo { text-align: center;
 font-size: clamp(42px, 8vw, 90px);
-
 font-weight: 800;
 
 letter-spacing: -5px;
-
 line-height: 1;
 
 margin-bottom: 80px;
-
-color: #ffffff;
-
-text-shadow:
-    0 0 30px rgba(255,255,255,0.08);
 }
 .logo span { color: #8b6cff;
 text-shadow:
     0 0 30px rgba(139,108,255,0.35);
 }
-/* ========================= CARDS ========================= */
+/* ========================= MAIN CARDS ========================= */
 .cards { display: grid;
 grid-template-columns: repeat(2, 1fr);
 
 gap: 18px;
 }
-/* Card */
 .card { position: relative;
 min-height: 260px;
 
 padding: 30px;
 
 text-decoration: none;
-
 color: white;
 
 border-radius: 24px;
@@ -91,12 +59,8 @@ border: 1px solid rgba(255,255,255,0.08);
 
 backdrop-filter: blur(15px);
 
-transition:
-    transform 0.4s ease,
-    border 0.4s ease,
-    box-shadow 0.4s ease;
+transition: 0.4s ease;
 }
-/* Card glow */
 .card::before { content: "";
 position: absolute;
 
@@ -114,7 +78,6 @@ filter: blur(50px);
 
 transition: 0.4s;
 }
-/* Hover */
 .card:hover { transform: translateY(-8px);
 border-color: rgba(139,108,255,0.45);
 
@@ -122,10 +85,7 @@ box-shadow:
     0 20px 60px rgba(0,0,0,0.4),
     0 0 40px rgba(139,108,255,0.08);
 }
-.card:hover::before { transform: scale(1.5);
-background: rgba(139,108,255,0.22);
-}
-/* ========================= NUMBER ========================= */
+.card:hover::before { transform: scale(1.5); }
 .card-number { position: absolute;
 top: 25px;
 right: 28px;
@@ -136,10 +96,8 @@ color: #656575;
 
 letter-spacing: 2px;
 }
-/* ========================= ICON ========================= */
 .card-icon { width: 50px; height: 50px;
 display: flex;
-
 align-items: center;
 justify-content: center;
 
@@ -154,13 +112,7 @@ color: #a995ff;
 font-size: 24px;
 
 margin-bottom: 70px;
-
-transition: 0.4s;
 }
-.card:hover .card-icon { transform: rotate(8deg) scale(1.1);
-background: rgba(139,108,255,0.2);
-}
-/* ========================= CONTENT ========================= */
 .card-content h2 { font-size: 30px;
 font-weight: 700;
 
@@ -171,7 +123,6 @@ margin-bottom: 6px;
 .card-content p { color: #858592;
 font-size: 14px;
 }
-/* ========================= ARROW ========================= */
 .arrow { position: absolute;
 bottom: 25px;
 right: 28px;
@@ -197,26 +148,6 @@ color: white;
 
 background: #8b6cff;
 }
-/* ========================= FOOTER ========================= */
-footer { position: relative;
-width: min(1100px, 90%);
-
-margin: auto;
-
-padding: 25px 0 35px;
-
-display: flex;
-
-justify-content: space-between;
-
-color: #4e4e59;
-
-font-size: 11px;
-
-letter-spacing: 2px;
-
-border-top: 1px solid rgba(255,255,255,0.06);
-}
 /* ========================= MOBILE ========================= */
 @media (max-width: 700px) {
 main {
@@ -232,7 +163,9 @@ main {
 }
 
 .cards {
-    grid-template-columns: 1fr;gap: 14px;
+    grid-template-columns: 1fr;
+
+    gap: 14px;
 }
 
 .card {
@@ -247,30 +180,5 @@ main {
 
 .card-content h2 {
     font-size: 26px;
-}
-
-footer {
-    margin-top: 20px;
-}
-}
-gap: 14px;
-}
-
-.card {
-    min-height: 220px;
-
-    padding: 25px;
-}
-
-.card-icon {
-    margin-bottom: 55px;
-}
-
-.card-content h2 {
-    font-size: 26px;
-}
-
-footer {
-    margin-top: 20px;
 }
 }
