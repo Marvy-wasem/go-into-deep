@@ -182,3 +182,147 @@ main {
     font-size: 26px;
 }
 }
+/* ========================= CONTENT SECTIONS ========================= */
+.content-section { width: 100%;
+margin-top: 160px;
+padding-bottom: 100px;
+}
+/* Section title */
+.section-header { margin-bottom: 45px; }
+.section-header span { color: #8b6cff;
+font-size: 11px;
+
+letter-spacing: 3px;
+}
+.section-header h2 { font-size: clamp(45px, 8vw, 75px);
+line-height: 1;
+
+letter-spacing: -4px;
+
+margin: 10px 0;
+}
+.section-header p { color: #777783;
+font-size: 14px;
+}
+/* Content cards */
+.content-cards { display: grid;
+grid-template-columns: repeat(3, 1fr);
+
+gap: 15px;
+}
+.content-card { position: relative;
+min-height: 230px;
+
+padding: 25px;
+
+display: flex;
+
+flex-direction: column;
+
+justify-content: space-between;
+
+text-decoration: none;
+
+color: white;
+
+border-radius: 20px;
+
+background:
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,0.06),
+        rgba(255,255,255,0.02)
+    );
+
+border: 1px solid rgba(255,255,255,0.07);
+
+transition: 0.35s ease;
+
+overflow: hidden;
+}
+.content-card::before { content: "";
+position: absolute;
+
+width: 150px;
+height: 150px;
+
+right: -60px;
+top: -60px;
+
+border-radius: 50%;
+
+background: rgba(139,108,255,0.12);
+
+filter: blur(40px);
+
+transition: 0.4s;
+}
+.content-card:hover { transform: translateY(-7px);
+border-color: rgba(139,108,255,0.4);
+
+box-shadow:
+    0 20px 50px rgba(0,0,0,0.35);
+}
+.content-card:hover::before { transform: scale(1.5); }
+/* Icon */
+.content-icon { width: 48px; height: 48px;
+display: flex;
+
+align-items: center;
+justify-content: center;
+
+border-radius: 13px;
+
+background: rgba(139,108,255,0.1);
+
+font-size: 22px;
+}
+/* Info */
+.content-info { position: relative; }
+.content-info > span { color: #676775;
+font-size: 10px;
+
+letter-spacing: 2px;
+}
+.content-info h3 { font-size: 18px;
+margin: 8px 0 3px;
+}
+.content-info p { color: #777783;
+font-size: 12px;
+}
+/* Arrow */
+.content-arrow { position: absolute;
+bottom: 22px;
+right: 22px;
+
+width: 35px;
+height: 35px;
+
+display: flex;
+
+align-items: center;
+justify-content: center;
+
+border-radius: 50%;
+
+background: rgba(255,255,255,0.05);
+
+color: #777783;
+
+transition: 0.3s;
+}
+.content-card:hover .content-arrow { background: #8b6cff;
+color: white;
+
+transform: translate(3px, -3px);
+}
+/* Mobile */
+@media (max-width: 750px) {
+.content-cards {
+    grid-template-columns: 1fr;
+}
+
+.content-section {
+    margin-top: 120px;
+}
+}
