@@ -1,0 +1,21 @@
+gap: 14px;
+}
+
+.card {
+    min-height: 220px;
+
+    padding: 25px;
+}
+
+.card-icon {
+    margin-bottom: 55px;
+}
+
+.card-content h2 {
+    font-size: 26px;
+}
+
+footer {
+    margin-top: 20px;
+}
+}
